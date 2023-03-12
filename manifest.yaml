@@ -1,0 +1,28 @@
+applications:
+
+- name: node-auth-service
+  instance: 1
+  buildpacks: 
+    - nodejs_buildpack
+  path: srv
+  routes:
+    - route: node-auth-service.cfapps.us10-001.hana.ondemand.com 
+  services:
+    - xsuaa-node
+
+
+- name: node-auth-approuter
+  random-route: true
+  path: app
+  memory: 128M
+  env:
+    destinations: >
+      [
+        {
+          "name":"srv-api",
+          "url":"https://node-auth-service.cfapps.us10-001.hana.ondemand.com",
+          "forwardAuthToken": true
+        }
+      ]
+  services:
+  - xsuaa-node

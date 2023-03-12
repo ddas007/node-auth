@@ -1,0 +1,11 @@
+{
+    "xsappname": "localroute-auth",
+    "tenant-mode": "dedicated",
+    "oauth2-configuration": {
+        "token-validity": 604800,
+        "refresh-token-validity": 2592000,
+        "redirect-uris": [
+            "http://localhost:5000/**"
+        ]
+    }
+}
